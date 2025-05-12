@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Mantenimiento</title>
+
+  <!-- Vuetify CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/vuetify@2/dist/vuetify.min.css" rel="stylesheet">
+  <!-- Material Design Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div id="app">
+    <v-app>
+      <v-main>
+        <v-container class="text-center">
+          <header-component></header-component>
+
+          <router-view></router-view>
+
+        </v-container>
+      </v-main>
+      <v-footer app>
+        <v-container>
+          <v-row justify="center">
+            <v-col cols="12" class="text-center black--text">
+              © 2025 - Soferp.
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-footer>
+
+    </v-app>
+  </div>
+
+  <!-- Vue y Vuetify -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vuetify@2/dist/vuetify.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-router/dist/vue-router.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Componentes externo -->
+  <script src="pagination-component.js"></script>  
+  <script src="register-item-component.js"></script>
+  <script src="register-technician-component.js"></script>
+  <script src="table-component.js"></script>
+  <script src="header-component.js"></script>
+  <script src="pie-chart-component.js"></script>
+  <script src="bar-chart-component.js"></script>
+  <script src="statistics-component.js"></script>
+  <script src="items-component.js"></script>
+  <script src="technician-component.js"></script>
+  <!-- Inicialización de la app -->
+  <script>
+    // Define las rutas
+    const routes = [
+      { path: '/', redirect: '/inicio' },
+      { path: '/inicio', component: TableComponent },
+      { path: '/estadisticas', component: StatisticsComponent },
+      { path: '/activos', component: ItemsComponent },
+      { path: '/tecnicos', component: TechnicianComponent },
+    ];
+
+    // Crea el router
+    const router = new VueRouter({
+      routes,
+    });
+
+    // Inicializa Vue con el router
+    new Vue({
+      el: '#app',
+      vuetify: new Vuetify(),
+      router,
+      components: {
+        RegisterItemComponent,
+        PaginationComponent,
+        HeaderComponent,
+      },
+    });
+  </script>
+
+</body>
+
+</html>
