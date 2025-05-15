@@ -14,15 +14,35 @@ const TableComponent = {
               <v-divider class="mx-4" inset vertical></v-divider>
               <v-spacer></v-spacer>
               
-              <v-btn @click="agregarMant">Nuevo mantenimiento</v-btn>
+              <v-btn @click="dialog = true" color="green darken-1" style="color: white;">
+                Nuevo mantenimiento
+              </v-btn>
+
               
             </v-toolbar>
           </template>
         </v-data-table>
+        
+        <!-- Modal para registrar un nuevo mantenimiento -->
+        <v-dialog v-model="dialog" max-width="600px">
+          <v-card style="max-height: 90vh; overflow-y: auto;">
+            <v-card-text>
+              <register-maintenance-component :onCancel="closeDialog" />
+            </v-card-text>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+
       </div>
     `,
+    components: {
+        'register-maintenance-component': RegisterMaintenanceComponent,
+    },
     data() {
         return {
+            dialog: false,
             headers: [
                 { text: 'Activo', value: 'activo' },
                 { text: 'Fecha Programada', value: 'fecha' },
@@ -31,7 +51,7 @@ const TableComponent = {
             items: [
                 { activo: 'Compresor A', fecha: '2025-05-15', tipo: 'Preventivo' },
                 { activo: 'Motor B', fecha: '2025-05-20', tipo: 'Correctivo' },
-                { activo: 'Generador C', fecha: '2025-05-25', tipo: 'Preventivo' },
+                { activo: 'Generador C', fecha: '2025-05-24', tipo: 'Preventivo' },
                 { activo: 'Turbina D', fecha: '2025-05-30', tipo: 'Correctivo' },
                 { activo: 'Bomba E', fecha: '2025-06-05', tipo: 'Preventivo' },
                 { activo: 'Compresor F', fecha: '2025-06-10', tipo: 'Correctivo' },
@@ -43,9 +63,8 @@ const TableComponent = {
         };
     },
     methods: {
-        agregarMant() {
-            console.log('Agregar nuevo mantenimiento preventivo');
-            // implementar la lógica para agregar un nuevo mantenimiento
+        closeDialog() {
+            this.dialog = false;
         },
     },
 };
